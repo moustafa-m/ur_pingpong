@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="$(arg name)">
+  <xacro:property name="initial_positions_file" value="$(find ur_pingpong_gz)/urdf/initial_positions.yaml"/>
+  <xacro:include filename="$(find ur_description)/urdf/ur.urdf.xacro"/>
+  
+  <link name="paddle">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.1" length="0.02"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.08" length="0.02"/>
+      </geometry>
+    </collision>
+    <material name="ground_white">
+      <color rgba="1 1 1 0.5"/>
+    </material>
+  </link>
+
+  <joint name="eef" type="fixed">
+    <parent link="tool0"/>
+    <child link="paddle"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+</robot>
